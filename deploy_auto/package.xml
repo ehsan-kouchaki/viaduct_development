@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>deploy_auto</name>
+  <version>0.1.0</version>
+  <description>Single-entry automatic ArUco-guided crawler alignment and sensor deployment.</description>
+  <maintainer email="grvc@todo.todo">VIAD Localization</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>rospy</depend>
+  <depend>geometry_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>tf</depend>
+  <exec_depend>aruco_detector</exec_depend>
+  <exec_depend>end_effector_control</exec_depend>
+  <exec_depend>deploy</exec_depend>
+</package>

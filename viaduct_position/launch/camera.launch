@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<launch>
+  <master auto="start"/>
+
+  <node pkg="rviz" type="rviz" name="rviz"
+    args="-d $(find viaduct_position)/rviz/homo.rviz"/> 
+
+  <node pkg="viaduct_position" type="homo_piloting" name="visual_odometry" output="screen" >
+    <rosparam file= "$(find viaduct_position)/config/orb.yaml" command="load" />
+  </node>
+
+  <node pkg="viaduct_position" type="ground_truth" name="ground_truth" output="screen" >
+		<param name="XY" value="-275"/> 
+		<param name="XZ" value="0"/>  
+    <param name="path_topic" value="/homo/path"/> 
+  </node> 
+
+  <!--node pkg="rosbag" type="play" name="play"
+    args="$(find pruebas)/bag/alcala/_2022-02-07-13-58-22.bag"/-->  --start 45 --duration 29 --start 58 --duration 20
+   --clock --start 40 --duration 70
+  $(find pruebas)/bag/alamillo/ida_vuelta.bag --clock --start 5 --duration 30
+  
+  $(find pruebas)/bag/alcala/_2022-02-07-12-30-02.bag --clock --start 10 --duration 45
+  $(find pruebas)/bag/alcala/_2022-02-07-13-58-22.bag --clock --pause --start 30 --duration 70
+</launch>

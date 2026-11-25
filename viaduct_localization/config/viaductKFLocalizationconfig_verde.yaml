@@ -1,0 +1,97 @@
+# Configuration of parameters of Beacon EKF Localization
+
+# Initial position of the drone (vector of double). Default: [0.0, 0.0, 0.0]
+iniposition : [0.0, 0.0, 0.0]
+
+# Input topic with the GPS-based position of the UAV in nav_msgs/Odometry
+# message format (string). Default: "/gps_position"
+gpspos_topic : "/gps/pose"
+
+# Input topic with the LIDAR-based position of the UAV in nav_msgs/Odometry
+# message format (string). Default: "/lidar_position"
+lidarpos_topic : "/hough/pose"
+
+# Input topic with the homography-based position of the UAV in nav_msgs/Odometry
+# message format (string). Default: "/homog_position"
+homogpos_topic : "/track/pose"
+
+# Input topic with the odometry information from the homography method 
+# (the estimated increment in position) (string). Default: "/homog_odom"
+homogdelta_topic : "/track/odom"
+
+# Input topic with the IMU measurements of the UAV in sensor_msgs/Imu
+# message format (string). Default: "/mavros/imu/data"
+imu_topic : "/mavros/imu/data"
+
+# Input topic with the altimeter measurements of the UAV in sensor_msgs/Range
+# message format (string). Default: "/sf11"
+altimeter_topic : "/sf11"
+
+# Input topic with the initial yaw of the UAV in geometry_msgs/QuaternionStamped
+# message format (string). Default: "/imu/yaw"
+iniangle_topic : /imu/yaw
+
+# Input topic with the estimated position using the ceiling of the bridge in 
+# nav_msgs/Odometry message format (string). Default : "/hough/ceil"
+ceiling_pose_topic : "/hough/ceil"
+
+# Name of the output topic that provides the estimated pose of the drone
+# in nav_msgs/Odometry message format (string). Default: "/viaddrone_position"
+est_pose_topic : "/viaddrone_position" # /mavros/vision_pose/pose
+
+# Frame of reference of sensors (string). Default: "/base_link_init"
+frame_id : "/base_link_init"
+
+# Child frame of reference of sensors (string). Default: "/base_link"
+child_frame_id : "/base_link"
+
+# Variance matrix of the prediction model (double). Default: 0.3
+sigma_model : 0.4 #0.6 #0.08 
+
+# Variance matrix of the observation model of the LIDAR pose estimation (double-vector). 
+# [Var-LIDAR-pos-y, Var-LIDAR-pos-z]. Default: [0.3, 0.3]
+sigma_lidar : [1, 0.15, 0.15, 0.015] # [0.015, 0.015] #[0.01, 0.01] #[0.05, 0.05] [0.015, 0.1, 0.015, 0.0015]
+
+# Variance matrix of the observation model of the homography pose estimation (double-vector). 
+# [Var-homog-pos-x, Var-homog-pos-y]. Default: [0.3, 0.3]
+sigma_homog:  [10, 10, 2, 0.07] #[0.6, 0.6] #[0.2, 0.2]
+
+# Variance matrix of the observation model of the GPS pose estimation (double-vector). 
+# [Var-GPS-pos-x, Var-GPS-pos-y]. Default: [0.3, 0.3]
+sigma_gps : [3.0, 3.0]
+
+# Variance matrix of the observation model of the altimeter 
+# sensor (double). Default: 0.3
+sigma_altim: 0.5
+
+# Variance matrix of the observation model of the pose estimated with 
+# the celing of the bridge (double). Default: 0.3
+sigma_ceilpos : 0.015
+
+# Maximum contribution to update the filter (double). Default: 0.4
+contrib_module : 6.0 #0.4
+
+# Flag to publish tranform from frame_id to child_frame_id (bool). Default: true
+publish_tf : true
+
+# Time threshold. If the difference between two consecutive measurements is greater than 
+# time_threshold, then the control matrix is null (double). Default : 0.75
+time_threshold : 0.75
+
+# Flag to select if the outlier filter should work 
+filter_outliers : true
+
+# Threshold to the outlier filter 
+deltam_outlier : 0.5
+
+# Geom2nav configuration parameters
+/geom2nav/frame_id : "/base_link_init" #/world_leica
+/geom2nav/geom_topic : "/total"
+/geom2nav/nav_topic : "/total/odom"
+ 
+# Path publisher node configuration parameters
+/path_publisher/gt_path : "/total_path"
+/path_publisher/gt_topic : "/total/odom"
+/path_publisher/localization_path : "/viaddrone_position_path"
+/path_publisher/localization_topic : "/viaddrone_position"
+

@@ -1,0 +1,17 @@
+<launch>
+
+    <node
+        pkg="end_effector_control"
+        type="end_effector_node"
+        name="end_effector_node"
+        output="screen">
+
+        <param name="port"
+               value="/dev/ttyARDUINO"/>
+
+        <param name="baudrate"
+               value="115200"/>
+
+    </node>
+
+</launch>

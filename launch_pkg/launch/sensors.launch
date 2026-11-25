@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="serial_port"      default="/dev/ttyRPLIDAR"/>
+    <arg name="sf11_serial_port" default="/dev/ttyALTIMETER"/>
+    <arg name="fcu_url" default="/dev/ttyFCU:921600"/>
+
+    <include file="$(find rplidar_ros)/launch/rplidar_s1.launch" >
+        <arg name="serial_port"          value="$(arg serial_port)" />
+    </include>
+
+    <node name="sf11_driver"
+          pkg="sf11_driver"
+          type="sf11_driver_node"
+          respawn="false"
+          output="screen">
+        <param name="serial_path"         type="string"  value="$(arg sf11_serial_port)"/>
+    </node>
+    
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch" />
+
+    <include file="$(find mavros)/launch/apm.launch" >
+        <arg name="fcu_url"          value="$(arg fcu_url)" />
+    </include>
+
+</launch>

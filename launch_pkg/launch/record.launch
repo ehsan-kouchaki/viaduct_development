@@ -1,0 +1,51 @@
+<launch>
+  <!-- RECORD --> 
+  <!-- <node name="recording" pkg="rosbag" type="record" output="screen"
+  args="-o /home/grvc/ 
+	/totalstation/pose
+	/scan 
+	/sf11
+	/camera/color/image_raw 
+	/camera/color/camera_info 
+	/mavros/global_position/compass_hdg
+	/mavros/global_position/global
+	/mavros/global_position/gp_lp_offset
+	/mavros/global_position/gp_origin
+	/mavros/global_position/home
+	/mavros/global_position/local
+	/mavros/global_position/raw/fix
+	/mavros/global_position/raw/gps_vel
+	/mavros/global_position/raw/satellites
+	/mavros/global_position/rel_alt
+	/mavros/global_position/set_gp_origin
+	/mavros/imu/data
+	/mavros/imu/data_raw
+	/mavros/imu/diff_pressure
+	/mavros/imu/mag
+	/mavros/imu/static_pressure
+	/mavros/imu/temperature_baro
+	/mavros/imu/temperature_imu
+	/mavros/local_position/accel
+	/mavros/local_position/odom
+	/mavros/local_position/pose
+	/mavros/local_position/pose_cov
+	/mavros/local_position/velocity_body
+	/mavros/local_position/velocity_body_cov
+	/mavros/local_position/velocity_local
+	/mavros/param/param_value
+	/mavros/px4flow/ground_distance
+	/mavros/rc/in
+	/mavros/rc/out
+	/mavros/rc/override
+	/mavros/state
+	/mavros/gpsstatus/gps1/raw
+	/mavros/vision_pose/pose
+	/mavros/vision_pose/pose_cov
+	/mavros/vision_speed/speed_twist_cov"/>
+</launch> -->
+
+ <node pkg="rosbag" type="record" name="rosbag_record_logs" output="screen"
+        args="-a -x '(.*)theora(.*)|(.*)compressed(.*)'"
+    />
+	
+</launch>

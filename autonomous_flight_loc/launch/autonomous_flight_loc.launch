@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- ### bool parameters ### -->
+  <arg name="frame_rate"
+       default="30"
+       doc="Frame rate at wich the localization is published (float)"/>
+
+  <!-- Launching nodes -->
+  <!-- Beacon EKF Localization configuration -->
+  <arg name="config_file"
+       default="$(find autonomous_flight_loc)/config/autonomousFlightLoc.yaml"
+       doc="Configuration file path ot the Autonomous Flight Localization node (string)"/>
+
+  <!-- beacon_ekf_localization node -->
+  <node name="autonomous_flight_loc"
+        pkg="autonomous_flight_loc"
+        type="autonomous_flight_loc"
+        respawn="false"
+        output="screen">      
+      <param name="frame_rate"    type="double"      value="$(arg frame_rate)"/>  
+      <rosparam command="load"    file="$(arg config_file)"/>
+  </node>
+
+</launch>

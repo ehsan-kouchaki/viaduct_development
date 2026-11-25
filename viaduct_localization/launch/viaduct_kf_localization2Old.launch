@@ -1,0 +1,112 @@
+<!--current-->
+
+
+<?xml version="1.0"?>
+<launch>  
+
+  <!--param name="/use_sim_time"      value="false"/-->
+
+  <!-- Launching nodes -->
+  <!-- VIAD-DRONE Localization configuration -->
+  <arg name="config_file_path"
+     default="$(find viaduct_localization)/config/viaductKFLocalizationconfig2.yaml"
+     doc="Configuration file path of the VIAD-DRONE localization node (string)"/>  
+
+  <!-- beacon_ekf_localization node -->
+  <node name="viaduct_localization"
+        pkg="viaduct_localization"
+        type="viaduct_kf_localization"
+        respawn="false"
+        output="screen">      
+      <rosparam command="load"         file="$(arg config_file_path)"/>
+  </node>
+
+  <!-- world_leica -> prism_init tf broadcaster -->
+  <include file="$(find autonomous_flight_loc)/launch/autonomous_flight_loc_viad.launch"/>
+
+  <!-- Paths publisher -->  
+  <!-- TODO: configurar y terminar de hacer bien este pkg-->
+  <include file="$(find path_publisher)/launch/paths_publisher.launch">
+     <arg name="node_name"    value="path_publisher"/>
+     <arg name="config_file"  value="$(arg config_file_path)"/>
+  </include>
+
+  <!-- Leica localization in nav_msgs/Odometry msg format -->
+  <include file="$(find geom2nav)/launch/geom2nav.launch">
+      <arg name="geom2nav_config_file_path"  value="$(arg config_file_path)" />
+  </include>
+
+  <node pkg="tf2_ros" 
+        type="static_transform_publisher" 
+        name="base_link_lidar"
+        args="-0.125 0.0 0.0 4.71 0.0 0.0 /base_link /laser"/>
+   
+   <!--node pkg="tf2_ros" 
+        type="static_transform_publisher" 
+        name="base_link_camera_color_optical_frame"
+        args="0.085 0.16 -0.18 0.0 0.0 0.0 /base_link /camera_color_optical_frame"/-->
+
+   <!--node pkg="tf2_ros" 
+        type="static_transform_publisher" 
+        name="base_link_sf11"
+        args="0.085 0.16 -0.18 0.0 0.0 0.0 /base_link /sf11"/-->
+   
+   <node pkg="tf2_ros"
+        type="static_transform_publisher" 
+        name="world_base_link_init"
+        args="0.0 0.0 0.22 0.0 0.0 0.0 /world /base_link_init"/>
+</launch>
+
+
+
+
+
+
+<!--Gemini-->
+<?xml version="1.0"?>
+<launch>  
+
+  <arg name="config_file_path"
+     default="$(find viaduct_localization)/config/viaductKFLocalizationconfig2.yaml"
+     doc="Configuration file path of the VIAD-DRONE localization node (string)"/>  
+
+  <node name="viaduct_localization"
+        pkg="viaduct_localization"
+        type="viaduct_kf_localization"
+        respawn="false"
+        output="screen">      
+      <rosparam command="load"         file="$(arg config_file_path)"/>
+      
+      <remap from="/viaddrone_position" to="/mavros/odometry/in" />
+  </node>
+
+  <include file="$(find path_publisher)/launch/paths_publisher.launch">
+     <arg name="node_name"    value="path_publisher"/>
+     <arg name="config_file"  value="$(arg config_file_path)"/>
+  </include>
+
+  <include file="$(find geom2nav)/launch/geom2nav.launch">
+      <arg name="geom2nav_config_file_path"  value="$(arg config_file_path)" />
+  </include>
+
+  <node pkg="tf2_ros" 
+        type="static_transform_publisher" 
+        name="base_link_lidar"
+        args="-0.125 0.0 0.0 4.71 0.0 0.0 /base_link /laser"/>
+   
+   <node pkg="tf2_ros"
+        type="static_transform_publisher" 
+        name="world_base_link_init"
+        args="0.0 0.0 0.22 0.0 0.0 0.0 /world /base_link_init"/>
+</launch>
+
+
+
+
+
+
+
+
+
+
+

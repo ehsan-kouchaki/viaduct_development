@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<launch>
+<!-- <master auto="start"/> -->
+
+  <!--node pkg="rviz" type="rviz" name="rviz"
+    args="-d $(find viaduct_position)/rviz/navegation.rviz"/--> deteccion_pilar hough ICP
+
+  <!--node pkg="rviz" type="rviz" name="rviz2"
+    args="-d $(find viaduct_position)/rviz/deteccion_pilar.rviz"/--> deteccion_pilar hough ICP
+
+  <include file="$(find gps_odometry)/launch/gps_odometry.launch" />
+
+  <node pkg="viaduct_position" type="direct_hough" name="lidar_localization" output="screen">
+   	<rosparam file= "$(find viaduct_position)/config/hough.yaml" command="load" /> 
+  </node> 
+
+  <node pkg="viaduct_position" type="homo_piloting" name="visual_odometry" output="screen" >
+    <rosparam file= "$(find viaduct_position)/config/orb.yaml" command="load" />
+  </node>
+
+  <node pkg="mission_manager" type="mission_manager" name="mission_manager" output="screen" >
+    <rosparam file= "$(find mission_manager)/config/params.yaml" command="load" />
+  </node>
+
+  <node pkg="viaduct_position" type="ground_truth" name="ground_truth" output="screen">
+    <param name="XY" value="-180"/> 
+    <param name="XZ" value="0"/>  
+    <param name="path_topic" value="/viaddrone_position_path"/> 
+  </node>
+
+  <node pkg="viaduct_position" type="3dPointCloud" name="name" output="screen"/>
+
+  <!--node pkg="viaduct_position" type="navegation" name="navegation" output="screen">
+    <param name="XY_homografia" value="45"/> 
+		<param name="XZ_homografia" value="0"/>
+    <param name="XY_hough" value="45"/> 
+		<param name="XZ_hough" value="0"/> 
+    <param name="XY_gps" value="-25"/> 
+		<param name="XZ_gps" value="0"/>  
+  </node-->
+
+  <!--node pkg="viaduct_position" type="3dPointCloud" name="name" output="screen"/-->
+
+  <!--node pkg="rosbag" type="play" name="play"
+    args="$(find pruebas)/bag/alcala/scan3.bag  "/-->  
+</launch>

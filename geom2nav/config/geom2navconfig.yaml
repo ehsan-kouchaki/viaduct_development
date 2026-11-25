@@ -1,0 +1,10 @@
+# Configuration of geom2nav node parameters
+
+# Input localization in geometry_msgs/PoseStamped msg (string). Default: "/leica/position"
+geom_topic: "/leica/pose" # "/mavros/vision_pose/pose"
+
+# Output localization in nav_mgsg/Odometry msg (string). Default: "/leica/position/odom"
+nav_topic: "/leica/pose/odom" # "/mavros/vision_pose/odom"
+
+# Frame_id of the output localization (string). Default: "/map"
+frame_id : "/world_leica"

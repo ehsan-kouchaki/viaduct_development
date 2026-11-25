@@ -1,0 +1,21 @@
+<!--
+-->
+<launch>
+	<!--param name="use_sim_time" value="true" /-->
+
+       <include file="$(find odom_alt_correction)/launch/robot_global_localization_camera.launch"/>
+
+       <node pkg="gps_odometry" 
+              type="gps_odom_mavros_timer_orientation_force_imu"
+              name="gps_odom_mavros_timer_orientation_force_imu"
+              output="screen">
+            <param name="gpsTopic"                      value="/gps/global"/>
+	    <param name="gps_frame_id"                  value="/map"/>
+	    <param name="angle_to_north"                value="54.561657"/> <!-- -67.648640 247.3379 55.557670 // karting,lateral de la estructura: 54.561657-->
+	    <param name="offset"                        value="0.0"/> <!-- 1.2 -->
+	    <param name="frame_rate"                	value="10"/> 
+	    <param name="out_pose_topic"                value="/mavros/vision_pose/pose"/> 
+            <param name="odom_topic_or"                 value="/camera_localization"/>
+        </node>
+
+</launch>

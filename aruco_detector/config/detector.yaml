@@ -1,0 +1,19 @@
+# Camera topics
+image_topic: /camera/fisheye1/image_raw
+camera_info_topic: /camera/fisheye1/camera_info
+camera_frame: camera_fisheye1_optical_frame
+
+# Marker
+marker_size: 0.03
+marker_prefix: aruco_marker_
+
+# Dictionary
+aruco_dictionary: DICT_4X4_50
+rectification_balance: 0.0
+
+# ROI rectangle configuration
+roi_center_x: -1
+roi_center_y: -1
+
+roi_width: 120
+roi_height: 120

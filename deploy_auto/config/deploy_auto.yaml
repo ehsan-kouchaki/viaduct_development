@@ -1,0 +1,57 @@
+# ROS1 Melodic / Python 2.7-compatible configuration for the four-stage
+# continuous-feedback crawler alignment.
+
+enable_motors: false
+
+aruco_pose_topic: /aruco_pose
+# Select 'aruco' for office testing (no MAVROS required), or 'mavros'
+# for the full experiment using /mavros/local_position/pose.
+yaw_source: aruco
+vehicle_pose_topic: /mavros/local_position/pose
+motor_command_topic: /end_effector/command
+emergency_stop_topic: /deploy_auto/emergency_stop
+start_topic: /deploy_auto/start
+expected_frame_id: "camera_fisheye1_optical_frame"
+
+# Camera-to-crawler planar mapping. At 0 degrees: forward=y, lateral=x.
+# Confirm this matches the actual ArUco pose frame and camera mounting.
+camera_forward_axis_deg: 0.0
+
+# Stage 1: reverse until marker is in front and |theta| <= max_bearing_deg.
+max_bearing_deg: 85.0
+backward_stage_timeout_s: 20.0
+
+# Stage 2: theta > 0 (Q1) -> CW c; theta < 0 (Q2) -> CCW d.
+bearing_tolerance_deg: 3.0
+rotation_stage_timeout_s: 30.0
+
+# Stage 3: drive forward to the existing 1 cm x/y tolerance.
+position_tolerance_m: 0.01
+max_forward_bearing_deg: 10.0
+forward_stage_timeout_s: 60.0
+
+# Stage 4: restore the initial heading using the selected yaw_source.
+# In 'aruco' mode, the fixed marker's relative yaw is used (opposite sign to
+# crawler yaw); keep the marker stationary and visible throughout alignment.
+yaw_tolerance_deg: 2.0
+yaw_restore_stage_timeout_s: 30.0
+
+# Safety limits and data freshness.
+pose_timeout_s: 0.60
+vehicle_pose_timeout_s: 0.60  # used only when yaw_source: mavros
+controller_wait_timeout_s: 60.0
+max_alignment_time_s: 180.0
+max_vehicle_yaw_deviation_deg: 85.0
+
+# Re-send active movement command to refresh the Arduino track watchdog.
+command_heartbeat_s: 0.15
+stop_repeats: 3
+stop_repeat_interval_s: 0.03
+
+# Arduino command mapping requested for the tested crawler:
+# a=forward, b=backward, c=clockwise, d=counterclockwise, e=stop.
+forward_command: "a"
+reverse_command: "b"
+clockwise_command: "c"
+counterclockwise_command: "d"
+stop_tracks_command: "e"

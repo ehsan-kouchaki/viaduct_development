@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="sf11_serial_port" value="/dev/ttySF11"/>
+
+    <node name="sf11_driver"
+          pkg="sf11_driver"
+          type="sf11_driver_node"
+          respawn="false"
+          output="screen">
+        <param name="serial_path" type="string" value="$(arg sf11_serial_port)"/>
+    </node>
+
+</launch>

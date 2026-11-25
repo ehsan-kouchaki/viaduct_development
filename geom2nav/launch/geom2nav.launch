@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+    <!--param name="/use_sim_time"      value="false"/-->
+
+    <!-- geom2nav configuration -->
+    <arg name="geom2nav_config_file_path"
+        default="$(find geom2nav)/config/geom2navconfig.yaml"
+        doc="Configuration file path to the geom2nav node (string)"/> <!--TODO : modify-->
+    
+    <!-- geom2nav node -->
+    <node name="geom2nav"
+          pkg="geom2nav"
+          type="geom2nav"
+          respawn="false"
+          output="screen">      
+        <rosparam command="load"         file="$(arg geom2nav_config_file_path)"/>
+    </node>
+
+    </launch>

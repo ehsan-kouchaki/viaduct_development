@@ -1,0 +1,19 @@
+<launch>
+  <arg name="enable_motors" default="true" />
+
+  <!-- Keep the existing deployment stack completely unchanged. -->
+  <include file="$(find deploy)/launch/deploy.launch" />
+
+  <!-- Parameters, including yaw_source (aruco or mavros), are selected in YAML. -->
+  <group ns="deploy_auto">
+    <rosparam command="load"
+              file="$(find deploy_auto)/config/deploy_auto.yaml" />
+    <param name="enable_motors" value="$(arg enable_motors)" />
+  </group>
+
+  <!-- This node waits for the f key from end_effector_node before starting. -->
+  <node pkg="deploy_auto"
+        type="automatic_alignment.py"
+        name="automatic_alignment"
+        output="screen" />
+</launch>

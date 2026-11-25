@@ -1,0 +1,18 @@
+<!--
+-->
+<launch>
+	<!--param name="use_sim_time" value="true" /-->
+
+        <node pkg="gps_odometry" 
+		      type="gps_odometry" 
+			  name="gps_odometry" 
+			  output="screen">
+            <param name="gpsTopic" 				value="/mavros/global_position/raw/fix"/>
+	    	<param name="gps_frame_id" 			value="/base_link_init"/>
+	    	<param name="gps_child_frame_id" 	value="/px4_frame"/>
+	    	<param name="angle_to_north" 		value="155.4" />
+	    	<param name="offset" 				value="0.0" />
+			<param name="topic_name" 				value="/gps/pose" />
+        </node>
+
+</launch>

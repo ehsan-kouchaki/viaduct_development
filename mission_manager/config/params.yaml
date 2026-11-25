@@ -1,0 +1,2 @@
+POSITION_TOPIC: "/viaddrone_position" #"/mavros/vision_pose/pose"
+HIGH_CHANGE: 0.4

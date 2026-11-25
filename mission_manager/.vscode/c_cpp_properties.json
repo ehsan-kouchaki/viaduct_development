@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/grvc/PILOTING/viad_ws/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/grvc/PILOTING/localization_ws/src/laser_localization/include/**",
+        "/home/grvc/PILOTING/localization_ws/src/laser_segmentation/include/**",
+        "/home/grvc/PILOTING/localization_ws/src/track-VO/include/**",
+        "/home/grvc/PILOTING/viad_ws/src/viadd_localization/GRVC_PILOTING/viaduct_localization/include/**",
+        "/home/grvc/PILOTING/viad_ws/src/viadd_localization/GRVC_PILOTING/viaduct_position/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

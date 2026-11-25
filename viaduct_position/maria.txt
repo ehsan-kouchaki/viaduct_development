@@ -1,0 +1,20 @@
+CÁMARA:
+Ecualización en el espacio de color YCRCB
+Extracción de features ORB (Oriented FAST and Rotated BRIEF)
+Matching utilizando el método de fuerza bruta de Hamming
+Creación de ecuación de mínimos cuadrados para conocer la transformación en el espacio
+Transformar transformación en ejes cámara a ejes mundo utilizando la proyección con la altura
+
+LASER:
+Detección de linea del pilar acotando búsqueda
+Extracción de punto central y tomamos referencia
+Detección iterativa de la línea y localización relativa a la referencia inicial
+Calculo de altura utilizando datos del laser de forma idéntica a XY
+
+FRECUENCIA DE SENSORES:
+LASER = 10 Hz -> 77 Hz aprox
+CÁMARA = 30 Hz -> 400 Hz aprox
+La frecuencia de los algoritmos desarrollados tiene que ser mayor que la velocidad de llegada de datos.
+
+ICP:
+No funciona el acomplamiento de señales

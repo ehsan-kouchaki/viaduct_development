@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+    
+    <arg name="node_name"
+        default="path_publisher"
+        doc="ROS node name (string)"/>
+
+    <arg name="config_file"
+        default="$(find path_publisher)/config/pathPublisherconfig.yaml"
+        doc="Configuration file path of the path publisher node (string)"/>
+    
+    <!-- centralizedEKF node -->
+    <node pkg="path_publisher" 
+          type="paths_publisher" 
+          name="$(arg node_name)"
+          output="screen">          
+        <rosparam   command="load"  file="$(arg config_file)"/>
+    </node>    
+
+</launch>

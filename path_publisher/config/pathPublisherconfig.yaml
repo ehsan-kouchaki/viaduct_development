@@ -1,0 +1,20 @@
+# Configuration of the Path Publisher node parameters
+
+# Input topic with the estimated localization information in 
+# nav_msgs/Odometry message format (string). Default: "/uav_localization"
+localization_topic : "/ttdrone_loc_smooth"
+
+# Input localization with the ground truth localization information
+# in nav_msgs/Odometry message format (string). Default : "/leica/pose/odom"
+gt_topic : "/leica/pose/odom"
+
+# Path of the input estimated localization in nav_msgs/Path
+# message format (string). Default : "/uav_localization_path"
+localization_path : "/ttdrone_loc_path"
+
+# Path of the input ground truth localization in nav_msgs/Path
+# message format (string). Default : "/leica/pose/path"
+gt_path : "/leica_path"
+
+# Frame of reference of the output paths (string). Default : "/world"
+frame_id : "/world_leica"

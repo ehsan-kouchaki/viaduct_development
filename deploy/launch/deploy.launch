@@ -1,0 +1,13 @@
+<launch>
+    <!-- ArUco pose detection -->
+    <include file="$(find aruco_detector)/launch/aruco_detector.launch" />
+
+    <!-- Existing keyboard and Arduino controller -->
+    <include file="$(find end_effector_control)/launch/end_effector.launch" />
+
+    <!-- Automatic deployment sequence -->
+    <node pkg="deploy"
+          type="deploy_sequence.py"
+          name="deploy_sequence"
+          output="screen" />
+</launch>

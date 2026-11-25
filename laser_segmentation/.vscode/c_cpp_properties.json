@@ -1,0 +1,41 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/grvc/PILOTING/viad_ws/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/grvc/grvc_ws/src/maria/aeroarms_ws/aeroarms_check_topics/include/**",
+        "/home/grvc/grvc_ws/src/maria/aeroarms_ws/aeroarms_visualization/include/**",
+        "/home/grvc/grvc_ws/src/grvc-utils/argument_parser/include/**",
+        "/home/grvc/grvc_ws/src/maria/aeroarms_ws/autonomous_flight_gps_loc/include/**",
+        "/home/grvc/grvc_ws/src/maria/aeroarms_ws/autonomous_flight_switching_loc/include/**",
+        "/home/grvc/grvc_ws/src/maria/camera_lidar_fusion/include/**",
+        "/home/grvc/grvc_ws/src/maria/fusion_lidar_stereo/include/**",
+        "/home/grvc/grvc_ws/src/grvc-utils/gazebo_animator/include/**",
+        "/home/grvc/grvc_ws/src/grvc-utils/handy_tools/include/**",
+        "/home/grvc/PILOTING/localization_ws/src/laser_segmentation/include/**",
+        "/home/grvc/grvc_ws/src/marvelmind_nav/include/**",
+        "/home/grvc/grvc_ws/src/maria/aeroarms_ws/merging_two_maps/include/**",
+        "/home/grvc/grvc_ws/src/maria/aeroarms_ws/gps_measurements/modulo_gps/include/**",
+        "/home/grvc/grvc_ws/src/network_distances/include/**",
+        "/home/grvc/grvc_ws/src/maria/aeroarms_ws/pcl_to_stl/include/**",
+        "/home/grvc/grvc_ws/src/serial/include/**",
+        "/home/grvc/grvc_ws/src/svo_parser/include/**",
+        "/home/grvc/PILOTING/localization_ws/src/track-VO/include/**",
+        "/home/grvc/PILOTING/viad_ws/src/viadd_localization/GRVC_PILOTING/viaduct_localization/include/**",
+        "/home/grvc/PILOTING/viad_ws/src/viadd_localization/GRVC_PILOTING/viaduct_position/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

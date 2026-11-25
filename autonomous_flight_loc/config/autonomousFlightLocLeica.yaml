@@ -1,0 +1,24 @@
+# Configuration of parameters of Autonomous Flight Localization
+
+# Name of the topic that provides localization in nav_msgs/Odometry
+# message format (string). Default: "/ttdrone_localization"
+localization_topic : "/totalstation/pose"
+
+# Name of the ouput topic that provides localization in 
+# geomtry_msgs/PoseStamped format (string). Default : "/mavros/vision_pose/pose"
+out_pose_topic : "/mavros/vision_pose/pose"
+
+# Name of the topic that provides IMU measurements in senosr_msgs/IMU
+# message format (string). Default: "/mavros/imu/data"
+imu_topic : "/mavros/imu/data"
+
+# Flag to choose if the input orientation should be the modified or not
+# with the euler angle offsets (bool). Default: false
+apply_rot_offset : false
+
+# If offset is the initial value, then this param is true
+apply_initial_offset : false
+
+# Euler angle offsets in radians (float). Default: [0.0, 0.0, 0.0]. It is
+# used if apply_initial_offset param is false
+euler_offset: [0.0, 0.0, 0.0] # 90 degs = 1.5708

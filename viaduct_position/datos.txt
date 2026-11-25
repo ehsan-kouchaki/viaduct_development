@@ -1,0 +1,7 @@
+imagenes de error de rosbag play _2022-06-07-19-47-02.bag --start 35 --duration 100 --pause --clock
+
+Muchas oscilaciones pero Z good
+rosbag play _2022-06-07-19-47-02.bag --start 35 --duration 80 --pause --clock
+
+X e Y bien pero z de lidar mala
+rosbag play _2022-06-07-19-19-19.bag --start 30 --pause --clock

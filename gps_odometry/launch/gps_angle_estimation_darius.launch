@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Arguments to be setted-->
+    <arg name="gpsTopic"             value="/mavros/global_position/raw/fix" />
+    <arg name="gps_nav_frame_id"     value="/world" />
+
+    <!-- sensor_msgs/NavSatFix to nav_msgs/Odometry -->
+    <node pkg="gps_odometry" 
+          type="gps_odometry" 
+          name="gps_odometry" 
+          output="screen">
+        <param name="gpsTopic"              value="$(arg gpsTopic)"/>  
+        <param name="gps_frame_id"          value="$(arg gps_nav_frame_id)"/>
+        <param name="angle_to_north"        value="0" />
+    </node>
+
+    <!-- GPS angle estimation -->
+    <node pkg="gps_odometry" 
+          type="gps_angle_estimation" 
+          name="gps_angle_estimation" 
+          output="screen" 
+          required="true">
+        <param name="gps_odom_Topic"        value="/odometry_ground_truth"/>
+    </node>
+
+</launch>

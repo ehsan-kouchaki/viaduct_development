@@ -1,0 +1,7 @@
+int8 SensorsHealth = 0
+int8 Obstacle = 1
+
+int8 type
+bool state
+string msg
+---
